@@ -23,7 +23,7 @@ const map = ((width = 500, height = 500) => {
             newCanvas.style.width = '100%'
             newCanvas.style.border = '1px solid black'
             newCanvas.style.position = 'absolute'
-            
+
             containerId.appendChild(newCanvas)
         }
 
@@ -36,17 +36,17 @@ const map = ((width = 500, height = 500) => {
             //Проверяем входные параметры экземпляра класса Map
             this.#validParam(selectorId, width, height)
 
-           
+
             //Ищем селектор
             const findSeletor = document.getElementById(selectorId)
-          
+
 
             // Создание карты
             const createMap = document.createElement('div')
             createMap.setAttribute('class', 'map')
             createMap.setAttribute('id', 'map')
             createMap.style.maxWidth = String(width) + 'px'
-            createMap.style.position ='relative'
+            createMap.style.position = 'relative'
 
             // Добавление карты в селектор
             findSeletor.appendChild(createMap)
@@ -83,6 +83,7 @@ const map = ((width = 500, height = 500) => {
             this.height = height
             this.#layers = this.#initLayers()
             this.fillLayer(scene.getWorld(), 'firstLayer')
+            
 
         }
 
@@ -115,13 +116,20 @@ const map = ((width = 500, height = 500) => {
                 }
 
             }
+        }
 
-
-
+        updateLayerCamera(settings) {
+            const camera = document.querySelector('#camera')
+            const { x, y, width, height, color } = settings
+            console.log(width, height)
+            camera.style.width = width + 'px'
+            camera.style.height = height + 'px'
+            camera.style.border = '1px solid black'
+            
         }
 
     }
-    return new Map('scene',width, height )
+    return new Map('scene', width, height)
 })()
 
 

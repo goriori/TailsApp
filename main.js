@@ -4,7 +4,7 @@ new ButtonLogic(scene);
 new ButtonUi();
 
 const camera = createCamera({ color: 'green', width: window.innerWidth });
-const testElement = document.querySelector('#camera');
+const testElement = document.querySelector('#map');
 
 let coord = {
     x: testElement.getBoundingClientRect().x,
@@ -13,5 +13,6 @@ let coord = {
 
 testElement.addEventListener('wheel', (event) => {
     const data = camera.onWheel(event, coord, scene.getDimension());
+    map.updateLayerCamera(data)
     console.log(data);
 });
