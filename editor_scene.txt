@@ -1,0 +1,61 @@
+написать модуль сцены
+модуль реализовать как замыкание над классом с возвратом единственного экземпляра этого класса
+модуль поместить в глобальную переменную scene, 
+
+реализация замыкания:
+const scene = (function() {
+    const self;
+
+    class Cell {
+        
+    }
+    
+    class Scene {
+    
+    }
+    
+    return new Scene();
+})();
+
+внутри модуля использовать вспомогательный класс ячейки, состоящий только из конструктора
+матрицу сцены наполнять объектами ячеек
+ячейка содержит: тип, координаты, набор значений для смены тайла, и ссылку на объект недвижимости размещённый на ней (здание или мебель)
+
+модуль должен реализовывать методы (пока реализовать те которые понятны)
+info - информация о модуле и версии ====*Готово*====
+getDimension - ширина и высота сцены ====*Готово*====
+setDimensions(width, height) ====*Готово*====
+createMatrix() - создание матрицы сцены из сетки ячеек. С типом по дефолту ====*Готово*====
+getWorld() - получить всю матрицу ====*Готово*====
+dateFormat(date) ====*Готово*====
+save()
+getPicture(x, y, width, height) - получить прямоугольный снимок сцены по координатам ====*Готово*====
+getCell(coord) ====*Готово*====
+
+методы редактирования... думаю перенесём их в отдельный метод editor
+changeTile(coord, tile)
+getCellsAround(coord)
+editTerritory(point, cameraState)
+editBrush(coord, env) - внутренний метод
+cancel() - отмена редактирования
+reduce() - накатить отменённое действие
+edit(coord, env, startTransaction = true, writeHistory = true)
+addBuild(coord, constructType)
+clearFundament(id)
+getCellsFundament(coord, buildType) - получить все клетки фундамента под экземпляр здания (здание может занимать несколько клеток)
+buildValidate(cellList)
+buildColorValidate(cell)
+
+============================================================================
+Не понятные методы(Не сделаны):
+
+in_diapason(coord, diapason) - внутренний метод
+
+getBuildId(coord)
+prepareFileRow(row) - Подготовить строку мира для сохранения
+prepareFileCell(curCell, dateSet, end)
+loadMap(content)
+load(content)
+loadBlock(line)
+packData(field) - превратить объект сцены в число для компактного хранения
+unPackData(landsType, line, x, y) - распаковка данных: превратить числа из файла в объекты сцены

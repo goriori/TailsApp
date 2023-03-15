@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/map.css">
+    <title>Scene</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="mapPull">
+            <h2>MapPull</h2>
+            <form class="mapSize">
+                <button class="pull" id="10x10" type="sumbit">10x10</button>
+                <button class="pull" id="12x12" type="sumbit">12x12</button>
+                <button class="pull" id="15x15" type="sumbit">15x15</button>
+            </form>
+
+        </div>
+
+        <div id="scene">
+            <h2>Map</h2>
+
+        </div>
+    </div>
+
+
+    <script src="scene.js"></script>
+    <script src="map.js"></script>
+    <script src="./ui/button.ui.js"></script>
+    <script src="logics/button.logics.js"></script>
+    
+    <script>
+
+        new ButtonLogic(scene)
+        new ButtonUi()
+
+        const respone = fetch('http://framework/models/getcontent/').then(data => data.json()).then(response => console.log(response))
+
+
+        // console.log("getPicture: ", scene.getPicture(2, 2))
+        // const coord = { x: 7, y: 2 }
+        // console.log('getCell: ', scene.getCell(coord))
+
+
+
+        // Map  
+
+
+    </script>
+</body>
+
+</html>

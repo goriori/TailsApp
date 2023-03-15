@@ -1,0 +1,49 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+
+    font-family: 'Courier New', Courier, monospace;
+    
+    margin-bottom: 20px;
+    
+}
+
+.container {
+    padding: 50px;
+}
+
+.pull {
+    max-width: 100px;
+    width: 100%;
+    min-height: 30px;
+    border-radius: 20px;
+    border: 0px;
+    transition: 0.3s;
+}
+
+.pull:hover {
+    cursor: pointer;
+    background-color: rgba(61, 185, 61, 0.671);
+
+    transition: 0.3s;
+}
+
+.active {
+    max-width: 100px;
+    width: 100%;
+    min-height: 30px;
+    border-radius: 20px;
+    border: 1px solid rgb(107, 105, 211);
+    transition: 0.3s;
+    -webkit-box-shadow: 7px -8px 52px -11px rgba(191, 63, 191, 0.59);
+    -moz-box-shadow: 7px -8px 52px -11px rgba(191, 63, 191, 0.59);
+    box-shadow: 7px -8px 52px -11px rgba(191, 63, 191, 0.59);
+    background-color: rgba(61, 185, 61, 0.671);
+}
