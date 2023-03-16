@@ -20,8 +20,8 @@ const map = ((width = 500, height = 500) => {
         #createCanvas(containerId, selectorName) {
             const newCanvas = document.createElement('canvas')
             newCanvas.setAttribute('id', selectorName)
-            newCanvas.style.width = '100%'
-            newCanvas.style.height = '100%'
+            newCanvas.width = this.width 
+            newCanvas.height = this.height
             newCanvas.style.border = '1px solid black'
             newCanvas.style.position = 'absolute'
 
@@ -78,11 +78,11 @@ const map = ((width = 500, height = 500) => {
         #layersSettings
         constructor(selectorId, width, height) {
             this.#version = '0.2'
-            this.#info()
-            this.#initMap(selectorId, width, height)
-            this.map = document.getElementById('map')
             this.width = width
             this.height = height
+            this.#info()
+            this.#initMap(selectorId, this.width, this.height)
+            this.map = document.getElementById('map')
             this.#layers = this.#initLayers()
             this.#layersSettings = {
                 firstLayer: {
@@ -135,10 +135,14 @@ const map = ((width = 500, height = 500) => {
             const camera = document.querySelector('#camera')
             const ctx = camera.getContext('2d')
             const { x, y, width, height, color } = settings
-            console.log(ctx)
+            console.log('ctx:', ctx)
+            console.log('x,y: ', x, y)
+            console.log('width and height:', width, height)
             ctx.reset()
             ctx.fillStyle = color
             ctx.fillRect(x, y, width, height)
+            ctx.moveTo(x, y)
+            ctx.save()
 
 
 

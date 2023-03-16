@@ -12,7 +12,9 @@ let coord = {
 };
 
 testElement.addEventListener('wheel', (event) => {
-    const data = camera.onWheel(event, coord, scene.getDimension());
+    console.log(event)
+    const { layerX, layerY } = event
+    const data = camera.onWheel(event, { x: layerX, y: layerY }, scene.getDimension());
     map.updateLayerCamera(data)
 
 });
