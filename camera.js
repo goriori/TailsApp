@@ -89,18 +89,13 @@ const createCamera = (options = {}) => {
 
         // передвинуть камеру с учётом границ мира с центром по переданным координатам.
         move(coord, bounder) {
-            this.cameraX = coord.x;
-            this.cameraY = coord.y;
+            const bounderX = bounder.width - this.cellWidthCount;
+            if (bounderX > coord.x) this.cameraX = coord.x;
+            else this.cameraX = bounderX;
 
-            this.cameraX =
-                bounder.width - this.cellWidthCount > this.cameraX
-                    ? this.cameraX
-                    : bounder.width - this.cellWidthCount;
-
-            this.cameraY =
-                bounder.height - this.cellHeightCount > this.cameraY
-                    ? this.cameraY
-                    : bounder.height - this.cellHeightCount;
+            const bounderY = bounder.height - this.cellHeightCount;
+            if (bounderY > coord.y) this.cameraY = coord.y;
+            else this.cameraY = bounderY;
         }
     }
 
