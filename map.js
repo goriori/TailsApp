@@ -3,7 +3,7 @@
 const map = ((width = 500, height = 500) => {
     const layersName = ['firstLayer', 'secondLayer', 'camera']
     const scene = createScene(width, height)
-
+    const matrix = scene.getWorld()
 
     class Map {
 
@@ -21,6 +21,7 @@ const map = ((width = 500, height = 500) => {
             const newCanvas = document.createElement('canvas')
             newCanvas.setAttribute('id', selectorName)
             newCanvas.style.width = '100%'
+            newCanvas.style.height = '100%'
             newCanvas.style.border = '1px solid black'
             newCanvas.style.position = 'absolute'
 
@@ -47,7 +48,7 @@ const map = ((width = 500, height = 500) => {
             createMap.setAttribute('id', 'map')
             createMap.style.maxWidth = String(width) + 'px'
             createMap.style.position = 'relative'
-
+            createMap.style.height = String(height) + 'px'
             // Добавление карты в селектор
             findSeletor.appendChild(createMap)
 
@@ -74,6 +75,7 @@ const map = ((width = 500, height = 500) => {
 
         #version
         #layers
+        #layersSettings
         constructor(selectorId, width, height) {
             this.#version = '0.2'
             this.#info()
@@ -82,8 +84,19 @@ const map = ((width = 500, height = 500) => {
             this.width = width
             this.height = height
             this.#layers = this.#initLayers()
-            this.fillLayer(scene.getWorld(), 'firstLayer')
-            
+            this.#layersSettings = {
+                firstLayer: {
+                    matrix
+                },
+                secondLayer: {
+                    matrix
+                },
+                camera: {
+                    matrix
+                }
+            }
+            this.fillLayer(matrix, 'firstLayer')
+
 
         }
 
@@ -97,9 +110,9 @@ const map = ((width = 500, height = 500) => {
             return findLayer
         }
 
-        #fillTiel(layer, x, y, color = 'blue') {
+        #fillTiel(layer, x, y, color = 'blue', { width, height }) {
             layer.fillStyle = color;
-            layer.fillRect(x, y, 50, 50);
+            layer.fillRect(x, y, width, height);
 
         }
 
@@ -111,8 +124,8 @@ const map = ((width = 500, height = 500) => {
             for (let h = 0; h < matrix.length; h++) {
 
                 for (let w = 0; w < matrix[h].length; w++) {
-                    const { x, y, color } = matrix[h][w]
-                    this.#fillTiel(layer, x, y, color)
+                    const { x, y, color, settings } = matrix[h][w]
+                    this.#fillTiel(layer, x, y, color, settings)
                 }
 
             }
@@ -120,12 +133,15 @@ const map = ((width = 500, height = 500) => {
 
         updateLayerCamera(settings) {
             const camera = document.querySelector('#camera')
+            const ctx = camera.getContext('2d')
             const { x, y, width, height, color } = settings
-            console.log(width, height)
-            camera.style.width = width + 'px'
-            camera.style.height = height + 'px'
-            camera.style.border = '1px solid black'
-            
+            console.log(ctx)
+            ctx.reset()
+            ctx.fillStyle = color
+            ctx.fillRect(x, y, width, height)
+
+
+
         }
 
     }

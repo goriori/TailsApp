@@ -14,5 +14,14 @@ let coord = {
 testElement.addEventListener('wheel', (event) => {
     const data = camera.onWheel(event, coord, scene.getDimension());
     map.updateLayerCamera(data)
-    console.log(data);
+
 });
+
+testElement.addEventListener('click', (event) => {
+    console.log(event)
+    const { layerX, layerY } = event
+    camera.move({ x: layerX, y: layerY })
+    const data = camera.getState()
+   console.log(data)
+    map.updateLayerCamera(data)
+})

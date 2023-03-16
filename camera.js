@@ -91,7 +91,7 @@ const createCamera = (options = {}) => {
         move(coord, bounder) {
             this.cameraX = coord.x;
             this.cameraY = coord.y;
-            console.log(bounder);
+            console.log(this.cameraX, this.cameraY);
         }
     }
 

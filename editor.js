@@ -5,10 +5,10 @@ const editor = (()=> {
 
 
         changeTile(coord, tile){
-
+        
         }
 
-
+        updateTaile(coord)
 
         getCellsAround(coord){}
 

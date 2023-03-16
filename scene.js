@@ -10,6 +10,10 @@ const createScene = (width, height) => {
             this.color = color
             this.mapColor = mapColor
             this.build = false
+            this.settings = {
+                width:100,
+                height:100
+            }
         }
     }
 
