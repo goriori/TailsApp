@@ -12,18 +12,21 @@ let coord = {
 };
 
 testElement.addEventListener('wheel', (event) => {
-    console.log(event)
-    const { layerX, layerY } = event
-    const data = camera.onWheel(event, { x: layerX, y: layerY }, scene.getDimension());
-    map.updateLayerCamera(data)
-
+    console.log(event);
+    const { layerX, layerY } = event;
+    const data = camera.onWheel(
+        event,
+        { x: layerX, y: layerY },
+        scene.getDimension()
+    );
+    map.updateLayerCamera(data);
 });
 
 testElement.addEventListener('click', (event) => {
-    console.log(event)
-    const { layerX, layerY } = event
-    camera.move({ x: layerX, y: layerY })
-    const data = camera.getState()
-   console.log(data)
-    map.updateLayerCamera(data)
-})
+    console.log(event);
+    const { layerX, layerY } = event;
+    camera.move({ x: layerX, y: layerY }, scene.getDimension());
+    const data = camera.getState();
+    console.log(data);
+    map.updateLayerCamera(data);
+});
