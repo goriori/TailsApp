@@ -6,10 +6,7 @@ new ButtonUi();
 const camera = createCamera({ color: 'green', width: window.innerWidth });
 const testElement = document.querySelector('#map');
 
-let coord = {
-    x: testElement.getBoundingClientRect().x,
-    y: testElement.getBoundingClientRect().y,
-};
+map.updateLayerCamera(camera.getState());
 
 testElement.addEventListener('wheel', (event) => {
     console.log(event);
