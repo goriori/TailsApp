@@ -92,11 +92,17 @@ const createCamera = (options = {}) => {
             this.cameraX = coord.x;
             this.cameraY = coord.y;
 
+            // if (bounder.width - this.cellWidthCount > this.cameraX) this.cameraX = this.cameraX
+            // else this.cameraX = bounder.width - this.cellWidthCount;
+            // if (bounder.height - this.cellHeightCount > this.cameraY) this.cameraY = this.cameraY 
+            // else this.cameraY =  bounder.height - this.cellHeightCount;
+
             this.cameraX =
                 bounder.width - this.cellWidthCount > this.cameraX
                     ? this.cameraX
                     : bounder.width - this.cellWidthCount;
 
+            
             this.cameraY =
                 bounder.height - this.cellHeightCount > this.cameraY
                     ? this.cameraY
